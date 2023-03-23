@@ -11,7 +11,7 @@ public class Main {
         Zona z5 = new Zona("zona 5",1234,8640);
         Zona z6 = new Zona("zona 6",2355,66500);
 
-       Urbanizacion u1 = new Urbanizacion("Urb 1",)
+       Urbanizacion u1 = new Urbanizacion("Urb 1",9000000);
 
     }
 }
