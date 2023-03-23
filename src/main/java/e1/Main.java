@@ -11,88 +11,22 @@ public class Main {
         Zona z5 = new Zona("zona 5",1234,8640);
         Zona z6 = new Zona("zona 6",2355,66500);
 
-       Urbanizacion u1 = new Urbanizacion("Urb 1",9000000);
+        Urbanizacion u1 = new Urbanizacion("Urb 1",9000000);
+        u1.add(z1);
+        u1.add(z2);
+        Urbanizacion u2 = new Urbanizacion("Urb 2",67564000);
+        u2.add(z3);
+        u2.add(z4);
+        Urbanizacion u3 = new Urbanizacion("Urb 3",34556650);
+        u3.add(z5);
+        u3.add(z6);
+        Urbanizacion ciudad1 = new Urbanizacion("ciudad 1",876545676);
+        ciudad1.add(u1);
+        ciudad1.add(u2);
+        z1.contarPoblacion();
+        u1.contarPoblacion();
+        ciudad1.contarPoblacion();
 
     }
 }
 
-public abstract class Component {
-    private int habitantes;
-    private String nombre;
-    private int poa;
-
-    public Component(String nombre, int habitantes, int poa) {
-        this.nombre=nombre;
-        this.habitantes=habitantes;
-        this.poa=poa;
-    }
-
-    public int getHabitantes() {
-        return habitantes;
-    }
-
-    public void setHabitantes(int habitantes) {
-        this.habitantes = habitantes;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getPoa(){ return poa;}
-    public void setPoa(int poa){ this.poa=poa;}
-
-    public abstract void contarPoblacion();
-    public abstract void add(Component composite);
-    public abstract void remove(Component composite);
-}
-
-public class Zona extends Component{
-    public Zona (String nombre, int habitantes, int poa) {
-        super(nombre,habitantes,poa);
-    }
-
-    @Override
-    public void contarPoblacion() {
-        System.out.println("Poblacion: "+this.getHabitantes());
-    }
-    @Override
-    public void add(Component composite) {
-    }
-
-    @Override
-    public void remove(Component composite) {
-    }
-}
-public class Urbanizacion extends Component{
-
-    private List<Component> componentList = new ArrayList<>();
-
-    public Urbanizacion(String nombre,int poa) {
-        super(nombre,0,poa);
-    }
-    @Override
-    public void contarPoblacion() {
-
-        for (Component component:componentList) {
-            this.setHabitantes(this.getHabitantes()+component.getHabitantes());
-            component.contarPoblacion();
-        }
-        System.out.println("Poblacion total: "+this.getHabitantes());
-    }
-
-    @Override
-    public void add(Component composite) {
-        componentList.add(composite);
-    }
-
-    @Override
-    public void remove(Component composite) {
-        componentList.remove(composite);
-    }
-
-}
